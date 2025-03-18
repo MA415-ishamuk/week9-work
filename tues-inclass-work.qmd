@@ -1,0 +1,42 @@
+---
+title: "tues-inclass-work"
+format: html
+editor: visual
+---
+
+## Midterm Project Insight
+Read in file using read.csv:
+
+```{r}
+strawberry <- read.csv(file = "strawb_mar6.csv")
+```
+
+Use functions created during last week (such as drop one val columns) to drop columns that either only have one data value or are all NA
+
+Suggestion: split into two tables - one for census and one for survey, then split out state (and write functions to apply to the states); take apart the columns that have multiple things in one col (after splitting between census and survey)
+```{r}
+strawberry$Program |> unique() 
+```
+
+Other things to potentially use: tables, kable, kableExtra, plots (ggplot)
+
+### Dictionary of Values in Data Set
+Gain - someone bought an asset
+
+## Coef of Variation
+Often used in process control (how much "wiggling around" that occurs: 
+
+```{r}
+mean = 2
+sd = 0.1 # how much variation is present in the data
+from = mean - 4 * sd
+to = mean + 4 * sd
+
+x = seq(from = from, to = to, by = 0.01)
+y = dnorm(x = x, mean = mean, sd =sd) # dnorm -> density func for norm dist
+cvp <- (sd/mean) * 100
+plot(x, y, type = "l", main = cvp)
+```
+CV % = Sn/Xn * 100
+ex: 6.9 = (S/64,682,000) * 100 -> from strawberry dataset
+ - so S (sd) = 4,463,000
